@@ -1,0 +1,53 @@
+name: Dependabot PRs manager
+
+on:
+  workflow_call:
+    inputs:
+      label:
+        description: Label to apply to the dependabot PR
+        required: false
+        type: string
+      auto-merge-all-update-types:
+        description: |
+          Whether to force "Auto merge" for any type of Dependabot update rather than just `minor` and `patch` update types
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  dependabot:
+    name: Auto-merge & Labels
+    if: ${{ startsWith(github.repository, 'yoanm/') && github.event_name == 'pull_request' && github.event.pull_request.user.login == 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+
+      - name: Add custom labels
+        if: ${{ inputs.label != '' }}
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          LABEL: ${{ inputs.label }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          gh pr edit "${PR_URL}" --add-label "${LABEL}"
+
+      - name: Dependabot metadata
+        if: ${{ !inputs.auto-merge-all-update-types }}
+        id: metadata
+        uses: dependabot/fetch-metadata@v2.4.0
+        with:
+          github-token: ${{ github.token }}
+
+      - name: Enable auto-merge for Dependabot PRs
+        if: ${{ inputs.auto-merge-all-update-types || steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch' }}
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          gh pr merge --auto --squash "${PR_URL}"
