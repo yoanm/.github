@@ -12,5 +12,3 @@ jobs:
       contents: write
       pull-requests: write
     uses: ./.github/workflows/reusable-dependabot-PRs-manager.yml
-    with:
-      update-inner-releases: true
