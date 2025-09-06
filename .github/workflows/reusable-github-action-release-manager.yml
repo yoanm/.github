@@ -1,4 +1,4 @@
-name: GitHub action release manager
+name: Reusable - GitHub action release manager
 
 on:
   workflow_call:

@@ -1,4 +1,4 @@
-name: Dependabot PRs manager
+name: Reusable - Dependabot PRs manager
 
 on:
   workflow_call:

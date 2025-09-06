@@ -1,4 +1,4 @@
-name: Coverage upload manager
+name: Reusable - Coverage upload manager
 
 on:
   workflow_call:
