@@ -1,6 +1,12 @@
 name: GitHub action release manager
 
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      update-inner-releases:
+        description: See `yoanm/gha-versioning` `update-inner-releases` option
+        required: false
+        type: boolean
 
 jobs:
   tag:
@@ -19,4 +25,4 @@ jobs:
       - name: Generate vX and vX.Y tags
         uses: yoanm/gha-versioning@v1
         with:
-          tag: ${{ github.event.release.tag_name }}
+          update-inner-releases: ${{ inputs.update-inner-releases }}
