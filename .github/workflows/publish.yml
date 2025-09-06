@@ -11,4 +11,4 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-    uses: ./.github/workflows/reusable-dependabot-PRs-manager.yml
+    uses: ./.github/workflows/reusable-github-action-release-manager.yml
