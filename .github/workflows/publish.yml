@@ -4,11 +4,13 @@ on:
   release:
     types: [published, edited]
 
+permissions:
+  contents: write # Required to push new tags !
+
 jobs:
   job:
     name: ".github"
     if: ${{ github.event.release.prerelease == false && github.event.release.draft == false }}
     permissions:
-      contents: write
-      pull-requests: write
+      contents: write # Required to push new tags !
     uses: ./.github/workflows/reusable-github-action-release-manager.yml
