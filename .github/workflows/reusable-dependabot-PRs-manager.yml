@@ -1,4 +1,4 @@
-name: Dependabot PRs managemer
+name: Dependabot PRs manager
 
 on:
   workflow_call:

@@ -5,18 +5,15 @@ on:
     inputs:
       artifacts-pattern:
         description: Pattern used to download artifacts containing coverage data
-        required: false
-        default: 'coverage-groups-*'
+        required: true
         type: string
       with-codacy:
         description: Whether to upload coverage data to Codacy
-        required: false
-        default: true
+        required: true
         type: boolean
       with-codecov:
         description: Whether to upload coverage data to Codecov
-        required: false
-        default: true
+        required: true
         type: boolean
     secrets:
       CODACY_PROJECT_TOKEN:

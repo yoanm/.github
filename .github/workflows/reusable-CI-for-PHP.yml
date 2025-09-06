@@ -1,12 +1,11 @@
-name: 'PHP CI reusable workflow'
+name: CI - PHP
 
 on:
   workflow_call:
     inputs:
       supported-versions-file-path:
         description: Path to the supported versions file
-        required: false
-        default: .supported-versions.json
+        required: true
         type: string
 
 permissions:
