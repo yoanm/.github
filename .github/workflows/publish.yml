@@ -1,0 +1,14 @@
+name: Publish
+
+on:
+  release:
+    types: [published, edited]
+
+jobs:
+  job:
+    name: ".github"
+    if: ${{ github.event.release.prerelease == false && github.event.release.draft == false }}
+    permissions:
+      contents: write
+      pull-requests: write
+    uses: ./.github/workflows/reusable-dependabot-PRs-manager.yml
