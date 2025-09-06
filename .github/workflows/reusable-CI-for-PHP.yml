@@ -1,4 +1,4 @@
-name: CI - PHP
+name: Reusable - CI - PHP
 
 on:
   workflow_call:
