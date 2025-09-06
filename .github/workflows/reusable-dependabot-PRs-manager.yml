@@ -29,7 +29,7 @@ jobs:
     steps:
 
       - name: Add custom labels
-        if: ${{ inputs.label != "" }}
+        if: ${{ inputs.label != '' }}
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           LABEL: ${{ inputs.label }}
