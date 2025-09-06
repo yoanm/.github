@@ -8,6 +8,9 @@ on:
         required: false
         type: boolean
 
+permissions:
+  contents: write # Required to push new tags !
+
 jobs:
   tag:
     name: Publish vX and vX.Y tags
