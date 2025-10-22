@@ -7,6 +7,11 @@ on:
         description: Path to the supported versions file
         required: true
         type: string
+      with-phpstan:
+        description: Whether to execute phpstan during static code analysis
+        required: false
+        default: false
+        type: boolean
       with-functional-tests-coverage:
         description: Whether to include functional tests coverage
         required: false
@@ -172,6 +177,10 @@ jobs:
       - name: Build with PHP ${{ steps.setup-php.outputs.php-version }}
         run: make build
 
+      - name: PHPStan
+        if: ${{ inputs.with-phpstan == true }}
+        run: make phpstan
+        
       - name: ComposerRequireChecker
         uses: docker://webfactory/composer-require-checker:4.5.0
 
