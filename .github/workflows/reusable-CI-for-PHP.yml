@@ -200,7 +200,7 @@ jobs:
   nightly-tests:
     name: Nightly PHP ${{ needs.fetch-supported-versions.outputs.php-next }}
     needs: [ fetch-supported-versions, tests ]
-    if: ${{ needs.fetch-supported-versions.outputs.php-next != '' && ( github.event_name == 'push' || ( github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'with-nightly-tests') ) ) }}
+    if: ${{ needs.fetch-supported-versions.outputs.php-next != 'null' && ( github.event_name == 'push' || ( github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'with-nightly-tests') ) ) }}
     runs-on: ubuntu-latest
     permissions:
       contents: read
