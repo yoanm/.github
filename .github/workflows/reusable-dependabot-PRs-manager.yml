@@ -40,7 +40,7 @@ jobs:
       - name: Dependabot metadata
         if: ${{ !inputs.auto-merge-all-update-types }}
         id: metadata
-        uses: dependabot/fetch-metadata@v2.4.0
+        uses: dependabot/fetch-metadata@v2.5.0
         with:
           github-token: ${{ github.token }}
 
